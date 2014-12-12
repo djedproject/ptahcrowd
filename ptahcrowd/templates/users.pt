@@ -35,7 +35,7 @@
         <td>${user.email}</td>
         <td tal:content="user.validated"></td>
         <td tal:content="user.suspended"></td>
-        <td>${request.fmt.datetime(user.joined, 'short')}</td>
+        <td>${request.format.datetime(user.joined, 'short')}</td>
         <td>
           <tal:block repeat="item view.external.get(user.__uri__,())">
             <img src="${request.static_url('ptahcrowd:static/buttons/%s_32.png'%item)}"
@@ -82,6 +82,6 @@
   <h3>Search users</h3>
 </div>
 
-${structure: request.render_tmpl(view.tmpl_view, view)}
+${structure: request.render_template(view.tmpl_view, view)}
 
 </tal:block>

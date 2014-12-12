@@ -1,15 +1,19 @@
 language: python
 python:
-  - 2.6
-  - 2.7
   - 3.3
   - 3.4
 
 install:
+  - pip install -e git+git://github.com/djedproject/djed.templates#egg=djed.templates
+  - pip install -e git+git://github.com/djedproject/djed.layout#egg=djed.layout
+  - pip install -e git+git://github.com/djedproject/djed.static#egg=djed.static
+  - pip install -e git+git://github.com/djedproject/djed.message#egg=djed.message
+  - pip install -e git+git://github.com/djedproject/djed.form#egg=djed.form
+  - pip install -e git+git://github.com/djedproject/djed.formatter#egg=djed.formatter
   - pip install -e git+git://github.com/ptahproject/ptah#egg=ptah
   - python setup.py develop --allow-hosts='pypi.python.org'
 
 script: python setup.py test
 
 notifications:
-  irc: "irc.freenode.org#ptahproject"
+  email: false

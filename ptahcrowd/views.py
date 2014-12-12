@@ -1,9 +1,6 @@
 import sqlalchemy as sqla
-import ptah.form
-import ptah.renderer
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
-from ptah.renderer import renderer
 
 import ptah
 import ptahcrowd
@@ -15,7 +12,7 @@ from ptahcrowd.providers import Storage
 
 @view_config(
     context=CrowdModule,
-    renderer=ptah.renderer.layout('ptahcrowd:users.lt', 'ptah-manage'))
+    renderer=ptah.layout('ptahcrowd:users.lt', 'ptah-manage'))
 class CrowdModuleView(ptah.form.Form, ptah.View):
     __doc__ = 'List/search users view'
 
@@ -133,7 +130,7 @@ class CrowdModuleView(ptah.form.Form, ptah.View):
 @view_config(
     name='groups.html',
     context=CrowdModule,
-    renderer=ptah.renderer.layout('ptahcrowd:groups.lt', 'ptah-manage'))
+    renderer=ptah.layout('ptahcrowd:groups.lt', 'ptah-manage'))
 
 class CrowdGroupsView(ptah.View):
     __doc__ = 'List groups view'
@@ -178,7 +175,7 @@ class CrowdGroupsView(ptah.View):
 
 @view_config(name='create-grp.html',
              context=CrowdModule,
-             renderer=ptah.renderer.layout('', 'ptah-manage'))
+             renderer=ptah.layout('', 'ptah-manage'))
 class CreateGroupForm(ptah.form.Form):
 
     csrf = True
@@ -211,7 +208,7 @@ class CreateGroupForm(ptah.form.Form):
 
 
 @view_config(context=CrowdGroup,
-             renderer=ptah.renderer.layout('', 'ptah-manage'))
+             renderer=ptah.layout('', 'ptah-manage'))
 class ModifyGroupView(ptah.form.Form):
 
     csrf = True

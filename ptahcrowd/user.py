@@ -1,6 +1,4 @@
 """ add/edit user """
-import ptah.form
-import ptah.renderer
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 
@@ -40,7 +38,7 @@ def get_groups_vocabulary(context):
 
 @view_config(name='create.html',
              context=CrowdModule,
-             renderer=ptah.renderer.layout('', 'ptah-manage'))
+             renderer=ptah.layout('', 'ptah-manage'))
 
 class CreateUserForm(ptah.form.Form):
 
@@ -83,7 +81,7 @@ class CreateUserForm(ptah.form.Form):
 
 
 @view_config(context=CrowdUser,
-             renderer=ptah.renderer.layout('', 'ptah-manage'),
+             renderer=ptah.layout('', 'ptah-manage'),
              route_name=ptahcrowd.CROWD_APP_ID)
 class ModifyUserForm(ptah.form.Form):
 

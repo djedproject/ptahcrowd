@@ -1,6 +1,4 @@
 """ reset password form """
-import ptah.form
-import ptah.renderer
 from datetime import datetime
 from pyramid import security
 from pyramid.view import view_config
@@ -19,7 +17,7 @@ from ptahcrowd.settings import _
 
 @view_config(
     route_name='ptahcrowd-resetpassword',
-    renderer=ptah.renderer.layout('ptahcrowd:resetpassword.lt', 'ptahcrowd'))
+    renderer=ptah.layout('ptahcrowd:resetpassword.lt', 'ptahcrowd'))
 
 class ResetPassword(ptah.form.Form):
 
@@ -68,7 +66,7 @@ class ResetPassword(ptah.form.Form):
 
 @view_config(
     route_name='ptahcrowd-resetpassword-form',
-    renderer=ptah.renderer.layout('ptahcrowd:resetpasswordform.lt', 'ptahcrowd'))
+    renderer=ptah.layout('ptahcrowd:resetpasswordform.lt', 'ptahcrowd'))
 
 class ResetPasswordForm(ptah.form.Form):
 

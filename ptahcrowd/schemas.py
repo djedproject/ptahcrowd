@@ -1,5 +1,4 @@
 """ schemas """
-import ptah.form
 from pyramid.compat import string_types
 
 import ptah

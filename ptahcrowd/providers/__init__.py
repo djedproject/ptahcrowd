@@ -2,8 +2,6 @@ import json
 import logging
 import sqlalchemy as sqla
 from datetime import datetime, timedelta
-import ptah.form
-import ptah.renderer
 from pyramid import security
 from pyramid.view import view_config
 from pyramid.config import Configurator
@@ -97,7 +95,7 @@ def login(uri, request):
 
 @view_config(
     route_name='ptahcrowd-verify-email',
-    renderer=ptah.renderer.layout('', 'pthacrowd'))
+    renderer=ptah.layout('', 'pthacrowd'))
 class VerifyEmail(ptah.form.Form):
     """ verify email """
 

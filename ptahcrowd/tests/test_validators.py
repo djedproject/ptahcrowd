@@ -1,4 +1,4 @@
-import ptah.form
+import ptah
 import ptahcrowd
 from ptah.testing import PtahTestCase
 

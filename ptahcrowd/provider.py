@@ -2,7 +2,6 @@ import sqlalchemy as sqla
 from datetime import datetime
 from pyramid.compat import text_type
 
-import ptah.form
 import ptah
 from ptah.password import passwordValidator
 from ptahcrowd.settings import CFG_ID_CROWD

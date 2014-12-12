@@ -1,5 +1,4 @@
 import ptah
-import ptah.form
 import translationstring
 
 _ = translationstring.TranslationStringFactory('ptahcrowd')

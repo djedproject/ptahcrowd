@@ -1,6 +1,4 @@
 """ user registration form """
-import ptah.form
-import ptah.renderer
 from pyramid import security
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound, HTTPForbidden
@@ -17,7 +15,7 @@ from ptahcrowd.validation import initiate_email_validation
 
 @view_config(
     route_name='ptahcrowd-join',
-    renderer=ptah.renderer.layout('ptahcrowd:registration.lt', 'ptahcrowd'))
+    renderer=ptah.layout('ptahcrowd:registration.lt', 'ptahcrowd'))
 
 class Registration(ptah.form.Form):
     """ Ptah crowd registration form """

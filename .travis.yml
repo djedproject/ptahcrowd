@@ -10,7 +10,7 @@ install:
   - pip install -e git+git://github.com/djedproject/djed.message#egg=djed.message
   - pip install -e git+git://github.com/djedproject/djed.form#egg=djed.form
   - pip install -e git+git://github.com/djedproject/djed.formatter#egg=djed.formatter
-  - pip install -e git+git://github.com/ptahproject/ptah#egg=ptah
+  - pip install -e git+git://github.com/djedproject/ptah#egg=ptah
   - python setup.py develop --allow-hosts='pypi.python.org'
 
 script: python setup.py test

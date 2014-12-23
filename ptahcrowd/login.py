@@ -132,10 +132,10 @@ class LoginSuspended(ptah.View):
         if not principal.suspended:
             return HTTPFound(location=self.request.application_url)
 
-        MAIL = ptah.get_settings(ptah.CFG_ID_PTAH)
-        self.from_name = MAIL['email_from_name']
-        self.from_address = MAIL['email_from_address']
-        self.full_address = MAIL['full_email_address']
+        self.full_address = self.request.registry.settings['mail.default_sender']
+        sender = ptah.mail.parseaddr(self.full_address)
+        self.from_name = sender[0]
+        self.from_address = sender[1]
 
 
 @view_config(route_name='ptahcrowd-logout')

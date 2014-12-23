@@ -4,6 +4,7 @@ python:
   - 3.4
 
 install:
+  - pip install -e git+git://github.com/djedproject/djed.mail#egg=djed.mail
   - pip install -e git+git://github.com/djedproject/djed.templates#egg=djed.templates
   - pip install -e git+git://github.com/djedproject/djed.layout#egg=djed.layout
   - pip install -e git+git://github.com/djedproject/djed.static#egg=djed.static

@@ -12,7 +12,7 @@ TOKEN_TYPE = ptah.token.TokenType(
     'cd51f14e9b2842608ccadf1a240046c1', timedelta(hours=24))
 
 
-def initiate_email_validation(email, principal, request):
+def initiate_email_validation(principal, request):
     """ Initiate email validation
 
     :param email: email address of user
@@ -20,7 +20,7 @@ def initiate_email_validation(email, principal, request):
     :param request: current request object
     """
     t = ptah.token.service.generate(TOKEN_TYPE, principal.__uri__)
-    template = ValidationTemplate(principal, request, email=email, token = t)
+    template = ValidationTemplate(request, principal=principal, token=t)
     template.send()
 
 
@@ -57,7 +57,7 @@ def principalRegistered(ev):
         ev.principal.validated = True
 
 
-class ValidationTemplate(ptah.mail.MailTemplate):
+class ValidationTemplate(ptah.mail.MessageTemplate):
 
     subject = _('Activate Your Account')
     template = 'ptahcrowd:templates/validate_email.txt'
@@ -68,8 +68,9 @@ class ValidationTemplate(ptah.mail.MailTemplate):
         self.url = '%s/validateaccount.html?token=%s'%(
             self.request.application_url, self.token)
 
-        principal = self.context
-        self.to_address = ptah.mail.formataddr((principal.name, self.email))
+        self.recipients = [ptah.mail.formataddr(
+            (self.principal.name, self.principal.email)
+        )]
 
 
 @view_config(route_name='ptah-principal-validate')

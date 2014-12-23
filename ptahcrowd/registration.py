@@ -58,7 +58,7 @@ class Registration(ptah.form.Form):
         self.cfg = ptah.get_settings(CFG_ID_CROWD, self.request.registry)
         # validation
         if self.cfg['validation']:
-            initiate_email_validation(user.email, user, self.request)
+            initiate_email_validation(user, self.request)
             self.request.add_message('Validation email has been sent.')
             if not self.cfg['allow-unvalidated']:
                 return HTTPFound(location=self.request.application_url)

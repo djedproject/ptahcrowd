@@ -153,7 +153,7 @@ class TestResetPassword(ptah.PtahTestCase):
         request = self.make_request()
         passcode = ptah.pwd_tool.generate_passcode(user)
 
-        template = ResetPasswordTemplate(user, request)
+        template = ResetPasswordTemplate(request, principal=user)
         template.passcode = passcode
 
         template.update()

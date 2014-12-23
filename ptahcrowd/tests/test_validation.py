@@ -116,7 +116,7 @@ class TestValidation(ptah.PtahTestCase):
         user = CrowdUser(username='username', email='email')
         CrowdUser.__type__.add(user)
 
-        validation.initiate_email_validation(user.email, user, self.request)
+        validation.initiate_email_validation(user, self.request)
         self.assertEqual(Stub.status, 'Email has been sended')
         self.assertIsNotNone(Stub.token)
 
@@ -134,7 +134,7 @@ class TestValidation(ptah.PtahTestCase):
         CrowdUser.__type__.add(user)
 
         template = validation.ValidationTemplate(
-            user, self.request, email = user.email, token = 'test-token')
+            self.request, principal=user, token='test-token')
         template.update()
 
         res = text_(template.render())

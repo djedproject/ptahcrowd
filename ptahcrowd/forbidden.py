@@ -58,8 +58,9 @@ class Forbidden(ptah.View):
             response.headers['location'] = location
             return response
 
-        PTAH = ptah.get_settings(ptah.CFG_ID_PTAH, self.request.registry)
-        self.email_address = PTAH['email_from_address']
+        sender = ptah.mail.parseaddr(
+            self.request.registry.settings['mail.default_sender'])
+        self.email_address = sender[1]
 
         self.request.response.status = HTTPForbidden.code
 

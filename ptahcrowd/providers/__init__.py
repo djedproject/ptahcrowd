@@ -167,7 +167,7 @@ class VerifyEmail(ptah.form.Form):
                 'uid': entry.uid}
 
         t = ptah.token.service.generate(TOKEN_TYPE, json.dumps(data))
-        template = VerifyTemplate(entry, request, email=email, token=t)
+        template = VerifyTemplate(request, principal=entry, token=t)
         template.send()
 
         # login
@@ -216,7 +216,7 @@ def verify(request):
     return HTTPFound(location=request.application_url)
 
 
-class VerifyTemplate(ptah.mail.MailTemplate):
+class VerifyTemplate(ptah.mail.MessageTemplate):
 
     subject = 'Verify Your Account'
     template = 'ptahcrowd:templates/verify_email.txt'
@@ -226,7 +226,10 @@ class VerifyTemplate(ptah.mail.MailTemplate):
 
         self.url = self.request.route_url(
             'ptahcrowd-verify-email-complete', subpath=(self.token,))
-        self.to_address = ptah.mail.formataddr((self.context.name, self.email))
+
+        self.recipients = [ptah.mail.formataddr(
+            (self.principal.name, self.principal.email)
+        )]
 
 
 class AuthenticationComplete(object):

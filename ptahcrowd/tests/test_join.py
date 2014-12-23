@@ -75,14 +75,6 @@ class TestJoin(PtahTestCase):
         ptah.get_session().add(user)
         ptah.get_session().flush()
 
-        class Stub(object):
-            status = ''
-            def send(self, frm, to, msg):
-                Stub.status = 'Email has been sended'
-
-        MAIL = ptah.get_settings(ptah.CFG_ID_PTAH)
-        MAIL['mailer'] = Stub()
-
         request = self.make_request(
             POST = {'username': 'test',
                     'email': 'test@example.com',
@@ -110,14 +102,6 @@ class TestJoin(PtahTestCase):
         user = CrowdUser(username='username', email='email')
         ptah.get_session().add(user)
         ptah.get_session().flush()
-
-        class Stub(object):
-            status = ''
-            def send(self, frm, to, msg):
-                Stub.status = 'Email has been sended'
-
-        MAIL = ptah.get_settings(ptah.CFG_ID_PTAH)
-        MAIL['mailer'] = Stub()
 
         CROWD = ptah.get_settings(ptahcrowd.CFG_ID_CROWD)
         CROWD['allow-unvalidated'] = False

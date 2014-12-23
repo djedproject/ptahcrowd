@@ -28,8 +28,10 @@ class ResetPassword(ptah.form.Form):
 
     def update(self):
         cfg = ptah.get_settings(ptah.CFG_ID_PTAH, self.request.registry)
-        self.from_name = cfg['email_from_name']
-        self.from_address = cfg['email_from_address']
+        sender = ptah.mail.parseaddr(
+            self.request.registry.settings['mail.default_sender'])
+        self.from_name = sender[0]
+        self.from_address = sender[1]
 
         return super(ResetPassword, self).update()
 
@@ -48,7 +50,7 @@ class ResetPassword(ptah.form.Form):
                 passcode = ptah.pwd_tool.generate_passcode(principal)
 
                 template = ResetPasswordTemplate(
-                    principal, request, passcode=passcode)
+                    request, principal=principal, passcode=passcode)
                 template.send()
 
                 self.request.registry.notify(
@@ -130,7 +132,7 @@ class ResetPasswordForm(ptah.form.Form):
                 location=self.request.application_url)
 
 
-class ResetPasswordTemplate(ptah.mail.MailTemplate):
+class ResetPasswordTemplate(ptah.mail.MessageTemplate):
 
     subject = const.PASSWORD_RESET_SUBJECT
     template = 'ptahcrowd:resetpasswordmail.lt'
@@ -151,7 +153,8 @@ class ResetPasswordTemplate(ptah.mail.MailTemplate):
         self.url = '%s/resetpassword.html/%s/' % (
             request.application_url, self.passcode)
 
-        info = self.context
+        self.recipients = [ptah.mail.formataddr(
+            (self.principal.name, self.principal.email)
+        )]
 
-        self.to_address = ptah.mail.formataddr((info.name, info.email))
-
+        self.from_name = ptah.mail.parseaddr(self.sender)[0]

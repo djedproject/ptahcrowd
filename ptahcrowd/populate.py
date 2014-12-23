@@ -36,7 +36,7 @@ def create_admin_user(registry):
         user = tinfo.create(
             fullname=crowd_cfg['admin-name'],
             username=crowd_cfg['admin-login'],
-            email=ptah_cfg['email_from_address'])
+            email=crowd_cfg['admin-email'])
         user.password = ptah.pwd_tool.encode(crowd_cfg['admin-password'])
         user.validated = True
         user.suspended = False

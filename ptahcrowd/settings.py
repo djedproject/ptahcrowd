@@ -81,6 +81,12 @@ ptah.register_settings(
         default = ''),
 
     ptah.form.TextField(
+        'admin-email',
+        title = 'Admin email',
+        description = 'Default admin email.',
+        default = 'admin@localhost'),
+
+    ptah.form.TextField(
         'admin-password',
         title = 'Admin password',
         description = 'Default admin password.',

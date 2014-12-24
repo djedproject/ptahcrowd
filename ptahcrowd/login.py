@@ -11,7 +11,9 @@ from ptahcrowd.settings import _, CFG_ID_CROWD
 
 @view_config(
     route_name='ptahcrowd-login',
-    renderer=ptah.layout('ptahcrowd:login.lt', 'ptahcrowd'))
+    renderer='ptahcrowd:login.lt',
+    layout='ptahcrowd'
+)
 class LoginForm(ptah.form.Form, ptah.View):
     """ Login form """
 
@@ -101,7 +103,9 @@ class LoginForm(ptah.form.Form, ptah.View):
 
 @view_config(
     route_name='ptahcrowd-login-success',
-    renderer=ptah.layout('ptahcrowd:login-success.lt', 'ptahcrowd'))
+    renderer='ptahcrowd:login-success.lt',
+    layout='ptahcrowd'
+)
 class LoginSuccess(ptah.View):
     """ Login successful information page. """
 
@@ -120,7 +124,9 @@ class LoginSuccess(ptah.View):
 
 @view_config(
     route_name='ptahcrowd-login-suspended',
-    renderer=ptah.layout('ptahcrowd:login-suspended.lt', 'ptahcrowd'))
+    renderer='ptahcrowd:login-suspended.lt',
+    layout='ptahcrowd'
+)
 class LoginSuspended(ptah.View):
     """ Suspended account information page. """
 

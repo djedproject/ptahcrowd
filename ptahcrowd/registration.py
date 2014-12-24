@@ -15,8 +15,9 @@ from ptahcrowd.validation import initiate_email_validation
 
 @view_config(
     route_name='ptahcrowd-join',
-    renderer=ptah.layout('ptahcrowd:registration.lt', 'ptahcrowd'))
-
+    renderer='ptahcrowd:registration.lt',
+    layout='ptahcrowd'
+)
 class Registration(ptah.form.Form):
     """ Ptah crowd registration form """
 

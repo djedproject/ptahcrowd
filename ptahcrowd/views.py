@@ -12,7 +12,9 @@ from ptahcrowd.providers import Storage
 
 @view_config(
     context=CrowdModule,
-    renderer=ptah.layout('ptahcrowd:users.lt', 'ptah-manage'))
+    renderer='ptahcrowd:users.lt',
+    layout='ptah-manage'
+)
 class CrowdModuleView(ptah.form.Form, ptah.View):
     __doc__ = 'List/search users view'
 
@@ -130,8 +132,9 @@ class CrowdModuleView(ptah.form.Form, ptah.View):
 @view_config(
     name='groups.html',
     context=CrowdModule,
-    renderer=ptah.layout('ptahcrowd:groups.lt', 'ptah-manage'))
-
+    renderer='ptahcrowd:groups.lt',
+    layout='ptah-manage'
+)
 class CrowdGroupsView(ptah.View):
     __doc__ = 'List groups view'
 
@@ -175,7 +178,8 @@ class CrowdGroupsView(ptah.View):
 
 @view_config(name='create-grp.html',
              context=CrowdModule,
-             renderer=ptah.layout('', 'ptah-manage'))
+             layout='ptah-manage'
+)
 class CreateGroupForm(ptah.form.Form):
 
     csrf = True
@@ -208,7 +212,8 @@ class CreateGroupForm(ptah.form.Form):
 
 
 @view_config(context=CrowdGroup,
-             renderer=ptah.layout('', 'ptah-manage'))
+             layout='ptah-manage'
+)
 class ModifyGroupView(ptah.form.Form):
 
     csrf = True

@@ -38,8 +38,8 @@ def get_groups_vocabulary(context):
 
 @view_config(name='create.html',
              context=CrowdModule,
-             renderer=ptah.layout('', 'ptah-manage'))
-
+             layout='ptah-manage'
+)
 class CreateUserForm(ptah.form.Form):
 
     csrf = True
@@ -81,7 +81,7 @@ class CreateUserForm(ptah.form.Form):
 
 
 @view_config(context=CrowdUser,
-             renderer=ptah.layout('', 'ptah-manage'),
+             layout='ptah-manage',
              route_name=ptahcrowd.CROWD_APP_ID)
 class ModifyUserForm(ptah.form.Form):
 

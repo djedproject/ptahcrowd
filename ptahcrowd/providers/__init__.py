@@ -95,7 +95,8 @@ def login(uri, request):
 
 @view_config(
     route_name='ptahcrowd-verify-email',
-    renderer=ptah.layout('', 'pthacrowd'))
+    layout='pthacrowd'
+)
 class VerifyEmail(ptah.form.Form):
     """ verify email """
 

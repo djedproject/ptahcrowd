@@ -216,7 +216,7 @@ def verify(request):
     return HTTPFound(location=request.application_url)
 
 
-class VerifyTemplate(ptah.mail.MessageTemplate):
+class VerifyTemplate(ptah.mail.MailTemplate):
 
     subject = 'Verify Your Account'
     template = 'ptahcrowd:templates/verify_email.txt'

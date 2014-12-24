@@ -132,7 +132,7 @@ class ResetPasswordForm(ptah.form.Form):
                 location=self.request.application_url)
 
 
-class ResetPasswordTemplate(ptah.mail.MessageTemplate):
+class ResetPasswordTemplate(ptah.mail.MailTemplate):
 
     subject = const.PASSWORD_RESET_SUBJECT
     template = 'ptahcrowd:resetpasswordmail.lt'

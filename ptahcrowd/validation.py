@@ -57,7 +57,7 @@ def principalRegistered(ev):
         ev.principal.validated = True
 
 
-class ValidationTemplate(ptah.mail.MessageTemplate):
+class ValidationTemplate(ptah.mail.MailTemplate):
 
     subject = _('Activate Your Account')
     template = 'ptahcrowd:templates/validate_email.txt'
